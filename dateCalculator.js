@@ -21,7 +21,7 @@ export class DateCalculator {
         })
 
         this.buttonSubmit.addEventListener("click", () => {
-            this.#submit();
+            this.#onSubmit();
         })
     }
 
@@ -86,7 +86,7 @@ export class DateCalculator {
         let weekendsDay= 0;
         let workingDays= 0;
 
-        for(startDate; startDate <= endDate; startDate.setDate(startDate.getDate() + 1)) {
+        for(startDate; startDate < endDate; startDate.setDate(startDate.getDate() + 1)) {
             if (startDate.getDay() === 0 || startDate.getDay() === 6) {
                 weekendsDay++;
             } else {
@@ -144,7 +144,7 @@ export class DateCalculator {
         })
     }
 
-    #submit() {
+    #onSubmit() {
         let resultString = "";
         if(this.inputStartDate.value && this.inputEndDate.value) {
             const resultInDays = this.#calculateResultInDays();

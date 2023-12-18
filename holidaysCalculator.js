@@ -7,6 +7,7 @@ export class HolidaysCalculator {
         this.tableResult = tableResult;
         this.sortIcon = tableResult.querySelector("#sortIcon");
         this.holidaysList = [];
+        this.countries = [];
 
         this.calculateBtnHolidays.addEventListener("click", (event) => {
             event.preventDefault();
@@ -25,7 +26,8 @@ export class HolidaysCalculator {
         try {
             const response = await fetch(url);
             const data = await response.json();
-            this.#updateCountriesSelect(data.response.countries);
+            this.countries = data.response.countries;
+            this.#updateCountriesSelect(this.countries);
             this.#updateYearSelect();
             this.selectList.disabled = false;
             this.yearsList.disabled = false;
@@ -44,7 +46,6 @@ export class HolidaysCalculator {
             this.calculateBtnHolidays.disabled = true;
             const response = await fetch(url);
             const data = await response.json();
-            this.tableResult.querySelector("tbody").innerHTML = "";
             this.holidaysList = data.response.holidays;
             this.#updateTableResult(this.holidaysList);
             this.sortIcon.classList.remove("hidden");

@@ -4,17 +4,18 @@ import {HolidaysCalculator} from "./holidaysCalculator.js";
 
 import {tabsNav, tabsContent, inputStartDate, inputEndDate, timeIntervalSelect, typeDaysSelect, typeCountsSelect, buttonSubmit, tableResultDates, countriesSelect, yearsList, calculateBtnHolidays, tableResultHolidays, API_KEY} from './constants.js'
 
-const tabs = new Tabs(tabsNav, tabsContent);
-const dateCalculator = new DateCalculator(inputStartDate, inputEndDate, timeIntervalSelect, typeDaysSelect, typeCountsSelect, buttonSubmit, tableResultDates);
-dateCalculator.renderTableResults();
+(() => {
+    const tabs = new Tabs(tabsNav, tabsContent);
+    const dateCalculator = new DateCalculator(inputStartDate, inputEndDate, timeIntervalSelect, typeDaysSelect, typeCountsSelect, buttonSubmit, tableResultDates);
+    const holidaysCalculator = new HolidaysCalculator(API_KEY, countriesSelect, yearsList, calculateBtnHolidays, tableResultHolidays);
 
-tabs.tabsNav.addEventListener("click", function(event) {
-    // tabs.changeTab(event.target);
+    dateCalculator.renderTableResults();
 
-     if(event.target.dataset.content === "holidaysCalculator") {
-         const holidaysCalculator = new HolidaysCalculator(API_KEY, countriesSelect, yearsList, calculateBtnHolidays, tableResultHolidays);
-         holidaysCalculator.fetchCountries();
-     }
-})
+    tabs.tabsNav.addEventListener("click", function(event) {
+        if(event.target.dataset.content === "holidaysCalculator" && holidaysCalculator.countries.length === 0) {
+           holidaysCalculator.fetchCountries();
+        }
+    })
+})()
 
 
