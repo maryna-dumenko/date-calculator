@@ -158,6 +158,24 @@ h2 {
     display: none;
 }
 
+.alert-container {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #F44336;
+    color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 0 6px 0 rgb(0 0 0 / 75%);
+    font-size: 16px;
+}
+
+.alert-container.is-active {
+    display: flex;
+}
+
 @media (max-width: 768px) {
     .tabs__content-item {
         flex-wrap: wrap;

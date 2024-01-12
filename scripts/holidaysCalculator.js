@@ -1,5 +1,5 @@
 export class HolidaysCalculator {
-    constructor(API_KEY, selectList, yearsList, calculateBtnHolidays, tableResult) {
+    constructor(API_KEY, selectList, yearsList, calculateBtnHolidays, tableResult, alertsContainer) {
         this.API_KEY = API_KEY;
         this.selectList = selectList;
         this.yearsList = yearsList;
@@ -8,6 +8,7 @@ export class HolidaysCalculator {
         this.sortIcon = tableResult.querySelector("#sortIcon");
         this.holidaysList = [];
         this.countries = [];
+        this.alertsContainer = alertsContainer;
 
         this.calculateBtnHolidays.addEventListener("click", (event) => {
             event.preventDefault();
@@ -50,7 +51,10 @@ export class HolidaysCalculator {
             this.#updateTableResult(this.holidaysList);
             this.sortIcon.classList.remove("hidden");
         } catch (error) {
-            throw new Error(error);
+            this.showAlert("No results with these searching criteria", "danger");
+            setTimeout(() => {
+                this.hideAlert()
+            }, 3000)
         } finally {
             this.calculateBtnHolidays.disabled = false;
         }
@@ -121,5 +125,15 @@ export class HolidaysCalculator {
 
         this.sortIcon.dataset.sort = (typeSort === "ascending" ? "descending" : "ascending");
         this.#updateTableResult(this.holidaysList);
+    }
+
+    showAlert(text) {
+        this.alertsContainer.innerHTML = `${text}`;
+        this.alertsContainer.classList.add("is-active");
+    }
+
+    hideAlert() {
+        this.alertsContainer.classList.remove("is-active");
+        this.alertsContainer.innerHTML = '';
     }
 }

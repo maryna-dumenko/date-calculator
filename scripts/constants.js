@@ -16,6 +16,6 @@ const countriesSelect = document.querySelector("#countriesList");
 const yearsList = document.querySelector("#yearsList");
 const calculateBtnHolidays = document.querySelector("#calculateBtnHolidays");
 const tableResultHolidays = document.querySelector("#tableResultHolidays");
-
+const alertsContainer = document.querySelector(".alert-container");
 const API_KEY = "vnqBQaChBcjQZxtcBZL1W92zUXoVvw9i"
-export {tabsNav, tabsContent, inputStartDate, inputEndDate, timeIntervalSelect, typeDaysSelect, typeCountsSelect, buttonSubmit, tableResultDates, countriesSelect, yearsList, calculateBtnHolidays, tableResultHolidays, API_KEY};
+export {tabsNav, tabsContent, inputStartDate, inputEndDate, timeIntervalSelect, typeDaysSelect, typeCountsSelect, buttonSubmit, tableResultDates, countriesSelect, yearsList, calculateBtnHolidays, tableResultHolidays, API_KEY, alertsContainer};
